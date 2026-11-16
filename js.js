@@ -36,9 +36,9 @@ buton.addEventListener("click", () => {
 function schimbaImaginea() {
     const poza = document.getElementById("echipa");
 
-    poza.src = poza.src.includes("Poze/beiuscs.jpg")
-        ? "Poze/BeiusAlbastru.jpeg"
-        : "Poze/beiuscs.jpg";
+    poza.src = poza.src.includes("beiuscs.jpg")
+        ? "BeiusAlbastru.jpeg"
+        : "beiuscs.jpg";
 }
 
 
