@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/5275b23c32.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="Poze/logoBeius.png"> 
+    <title>CS Bihorul Beiuș</title>
+</head>
+<body>
+    <div id="corp">
+        <div id="cap">
+            <div id="divlogoBeius"> <img src="Poze/logoBeius.png" id="logoBeius"></div>
+            <button id="theme-toggle" onclick="schimbaImaginea()"><i class="fa-regular fa-moon" id="tema"></i></button>
+            <h1 id="cap2">CS Bihorul Beiuș</h1>
+        </div>
+        <div id="paddle">
+            <p>Clubul Sportiv Bihorul Beiuș este unul dintre simbolurile fotbalului din Depresiunea Beiușului, având o tradiție de peste un secol.<br><br>
+            Povestea fotbalului la Beiuș a început pe 7 iulie 1921, când, la inițiativa profesorului Ioan Bușiția, a fost înființată echipa de fotbal Aurora Beiuș. De-a lungul anilor, formația a evoluat sub diverse denumiri, printre care Aurora, Gloria și Bihorul Beiuș.<br><br>
+            Unul dintre cele mai importante momente din istoria clubului a fost participarea în Liga a III-a, unde echipa a activat timp de opt sezoane consecutive, între anii 2004 și 2012. În sezonul 2011–2012, Bihorul Beiuș a obținut locul al treilea, una dintre cele mai mari performanțe din istoria sa.<br><br>
+            Clubul a continuat să reprezinte cu mândrie orașul Beiuș, câștigând Cupa României – faza județeană Bihor, în anii 2015 și 2024.<br><br>
+            Sezonul 2024–2025 a adus o altă realizare remarcabilă: câștigarea Ligii a IV-a Bihor și promovarea în Liga a III-a, după victoria în fața echipei Sticla Arieșul Turda în ambele manșe ale barajului de promovare. În prezent, CS Bihorul Beiuș evoluează în Liga a III-a, al treilea eșalon al fotbalului românesc.
+            </p>
+        </div>
+        <div id="panou">
+            <div id="prima">
+                <div class="panoucls" onclick="window.location.href=''"><p>Clasament</p></div>
+                <div class="panoucls" onclick="window.location.href=''"><p>Hartă interactivă</p></div>
+            </div>
+            <div id="divechipa"><img src="Poze/beiuscs.jpg" id="echipa" alt="EchipaPoza" title="Primul 11">
+                <p><i id="iconpoza" class="fa-solid fa-camera"></i> CS Bihorul Beiuș - Minaur Baia Mare</p>
+            </div>
+            <div id="adoua">
+                <div class="panoucls" onclick="window.location.href='stadium.html'"><p>Stadion</p></div>
+                <div class="panoucls" onclick="window.location.href='gallery.html'"><p>Galerie</p></div>
+            </div>
+        </div>
+        <div id="contactdiv">
+            <section>
+                <h1 id="ctc">Contactaţi-ne</h1>
+            <form action="https://formsubmit.co/poprarescontact@gmail.com" method="POST" id="contact">
+                <input 
+                    type="email"
+                    name="email"
+                    placeholder="Adresa dvs. de e-mail" 
+                    required
+                    class="input"
+                >
+                <input 
+                    type="text" 
+                    name="subject" 
+                    placeholder="Subiectul discuției..." 
+                    required
+                    class="input"
+                >
+                <textarea 
+                    name="message" 
+                    placeholder="Mesajul tău aici..." 
+                    rows="4" 
+                    required
+                    class="input"
+                ></textarea>
+                <input type="hidden" name="_captcha" value="true">
+                <button type="submit" id="butonctc">Trimite mesajul</button>
+            </form>
+            </section>
+        </div>
+    </div>
+</body>
+<script src="js.js"></script>
+</html>

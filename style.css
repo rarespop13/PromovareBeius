@@ -1,0 +1,304 @@
+:root{
+    --text-antet: hsl(0, 0%, 100%);
+    --antet: hsl(0, 98%, 44%);
+    --border-img:  hsl(0, 0%, 0%);
+    --background:  hsl(0, 0%, 100%);
+    --text: hsl(0, 0%, 100%);
+    --paddle: hsl(0, 98%, 44%);
+    --border-paddle: hsl(0, 100%, 16%);
+    --text-poza: hsl(0, 0%, 0%);
+    --select: hsl(0, 96%, 9%);
+    --bck-contact: hsl(0, 0%, 0%);
+    --galerie-seniori: hsl(120, 100%, 41%);
+    --border-snr: hsl(0, 0%, 50%);
+}
+
+[data-theme="dark"]{
+    --text-antet: hsl(0, 0%, 0%);
+    --antet: hsl(189, 100%, 50%);
+    --border-img:  hsl(189, 100%, 30%); 
+    --background:  hsl(0, 0%, 0%);
+    --text: hsl(0, 0%, 0%);
+    --paddle: hsl(198, 100%, 63%);
+    --border-paddle: hsl(0, 100%, 16%);
+    --text-poza: hsl(0, 0%, 100%);
+    --select: hsl(0, 0%, 100%);
+    --bck-contact: hsl(189, 100%, 63%);
+    --galerie-seniori: hsl(120, 100%, 41%);
+}  
+
+body{
+    height: 100dvh;
+    margin: 0;
+    background-color: var(--background);
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+::selection {
+  background-color: var(--select);
+  color: var(--text);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+section {
+    scroll-margin-top: 100px;
+}
+
+
+#corp{
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#cap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    background: var(--antet);
+    height: 15%;
+    width: 100%;
+    justify-content: center;
+    z-index: 1000;
+    transition: transform 0.4s ease;
+    border-bottom: 2px solid var(--border-paddle);
+}
+#tema{
+    color: var(--select);
+}
+#cap button{
+    margin-top: 2%;
+    height: 20px;
+    margin-left: 1%;
+    border: none;
+    background-color: var(--antet);
+    font-size: 3em;
+    cursor: pointer;
+    transition: transform 0.4s ease;
+}
+#cap button:hover{
+    transform: scale(1.15);
+}
+#inapoi{
+    margin-left: 1%;
+    height: 60px;
+    width: 60px;
+    margin-top: 1.5%;
+    cursor: pointer;
+    transition: transform 0.4s ease;
+}
+#inapoi:hover{
+    transform: scale(1.15);
+}
+#cap.hidden {
+    transform: translateY(-80%);
+}
+#logoBeius{
+    height: 120px;
+    margin-left: 20%;
+}
+#cap2{
+    font-size: 4em;
+    color: var(--text-antet);
+    margin-top: 1.4%;
+    margin-left: auto;
+    margin-right: 2%;
+}
+#divechipa{
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.9s ease;
+    align-items: center;
+}
+#divechipa p{
+    color: var(--text-poza);
+    font-size: 1.4em;
+}
+#iconpoza{
+    color: var(--text-poza);
+}
+#divechipa:hover{
+    transform: scale(1.04);
+}
+#echipa{
+    height: 500px;
+    border: 2px solid var(--border-img);
+    border-radius: 25px;
+}
+#paddle{
+    background-color: var(--paddle);
+    height: 70%;
+    width: 60%;
+    margin-top: 15%;
+    padding: 2%;
+    border: 2px solid var(--border-paddle);
+    border-radius: 25px;
+}
+#paddle p{
+    color: var(--text);
+    font-size:1.5em;
+}
+#panou{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10%;
+}
+.panoucls{
+    width: 200%;
+    background-color: var(--paddle);
+    margin-bottom: 30%;
+    border: 2px solid var(--border-paddle);
+    border-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.9s ease;
+}
+.panoucls:hover{
+    transform: scale(1.07);
+}
+.panoucls p{
+    font-size: 1.9em;
+    color: var(--text);
+}
+#prima{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: -20%;
+    margin-right: 22%;
+}
+#adoua{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    margin-left: 22%;
+}
+#contactdiv{
+    margin-top: 2%;
+    width: 30%;
+    border: 2px solid var(--text-poza);
+    text-align: center;
+    background-color: var(--bck-contact);
+    border-radius: 20px;
+}
+#contact{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+#ctc{
+    color: var(--text);
+}
+#butonctc{
+    background-color: var(--bck-contact);
+    color: var(--text);
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+
+
+#stadion{
+    width: 50%;
+    border-radius: 20px;
+    margin-left: 25%;
+}
+#paddle2{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--paddle);
+    height: 70%;
+    width: 60%;
+    margin-top: 15%;
+    padding: 2%;
+    border: 2px solid var(--border-paddle);
+    border-radius: 25px;
+}
+#paddle2 p{
+    color: var(--text);
+    font-size:1.5em;
+}
+#stdgalerie{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--border-paddle);
+    border-radius: 20px;
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 1%;
+}
+#stdgalerie p{
+    color: var(--select);
+    text-align: left;
+    font-size: 1.4em;
+}
+.turda{
+    width: 300px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.turda:hover {
+    transform: scale(1.05);
+}
+#lightbox {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+}
+#pozaMare {
+    max-width: 90%;
+    max-height: 90%;
+}
+#pozele{
+    display: flex;
+    grid-column-gap: 0.3rem;
+    grid-row-gap: 0.3rem;
+}
+
+
+
+#seniori{
+    margin-top: 12%;
+    color: var(--select);
+}
+#seniori:before {
+	content: '─';
+	margin-right: 20px;
+    color: var(--galerie-seniori);
+}
+#seniori:after {
+	content: '─';
+	margin-left: 20px;
+    color: var(--galerie-seniori);
+}
+#galeriesnr{
+    margin-top: 3%;
+    width: 100%;
+    border-top: 4px solid var(--border-snr);
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.pozeSeniori{
+    margin-top: 10%;
+    width: 90%;
+    min-height: 90%;
+    margin-left: 5%;
+}
