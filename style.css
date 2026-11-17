@@ -55,6 +55,9 @@ section {
     flex-direction: column;
     align-items: center;
 }
+.texttt{
+    color: var(--antet);
+}
 #cap {
     position: fixed;
     top: 0;
@@ -79,7 +82,7 @@ section {
 #cap button{
     height: 20px;
     margin-left: 1%;
-    margin-top: 15%;
+    margin-top: 12%;
     border: none;
     background-color: var(--antet);
     font-size: 4em;
@@ -315,6 +318,9 @@ section {
     min-height: 90%;
     margin-left: 5%;
 }
+
+
+
 
 
 
