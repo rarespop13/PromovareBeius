@@ -311,12 +311,22 @@ section {
     border-top: 4px solid var(--border-snr);
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
+
 }
 .pozeSeniori{
     margin-top: 10%;
     width: 90%;
     min-height: 90%;
+    max-height: 90%;
     margin-left: 5%;
+    border-radius: 10px;
+}
+#lineGll{
+    width: 99%;
+    min-height: 4px;
+    margin-top: 2%;
+    border: none;
+    background-color: var(--border-snr);
 }
 
 
