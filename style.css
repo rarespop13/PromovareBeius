@@ -134,9 +134,13 @@ section {
     transform: scale(1.04);
 }
 #echipa{
-    height: 500px;
+    height: 80%;
     border: 2px solid var(--border-img);
     border-radius: 25px;
+}
+
+.img-second {
+    width: 600px;
 }
 #paddle{
     background-color: var(--paddle);
@@ -155,6 +159,7 @@ section {
     display: flex;
     flex-direction: row;
     margin-top: 10%;
+    width: 60%;
 }
 .panoucls{
     width: 200%;
@@ -294,7 +299,7 @@ section {
 #seniori{
     margin-top: 12%;
     color: var(--select);
-    font-size: 3rem
+    font-size: 3rem;
 }
 #seniori:before {
 	content: '─';
@@ -335,7 +340,7 @@ section {
 
 
 
-@media (max-width: 600px){
+@media (max-width: 768px){
     #cap{
         height: 10%;
     }
@@ -343,32 +348,40 @@ section {
         transform: translateY(-69%);
     }
     #cap button{
-        font-size: 3.9em;
+        font-size: 3.7em;
         margin-top: 10%;
-        margin-left: 2%;
+        margin-left: 0%;
     }
     #logoBeius{
-        margin-left: 20%;
-        height: 100px;
-        margin-top: 3%;
+        margin-left: 1%;
+        height: 90px;
+        margin-top: 4%;
     }
     #cap2{
-        font-size: 2.5em;
+        font-size: 1.6em;
         color: var(--text-antet);
-        margin-top: 5%;
-        margin-right: 2%;
+        margin-top: 6%;
+        margin-right: 5%;
+        text-align: center;
+    }
+    .csb-logo{
+        aspect-ratio: 675 / 1100;
     }
     #paddle{
         margin-top: 40%;
         height: 100%;
         width: 80%;
     }
+    #echipa{
+        height: 60%;
+        
+    }
     #panou{
         flex-direction: column;
-        margin-top: 10%;
+        margin-top: 20%;
     }
     .panoucls{
-        width: 80%;
+        width: 60%;
         margin-bottom: 10%;
     }
     #prima{
@@ -377,13 +390,17 @@ section {
         align-items: center;
         margin-left: 0;
         margin-right: 0;
+        margin-bottom: 10%;
+    }
+    .img-second {
+        width: 490px;
     }
     #adoua{
         display: flex;
         flex-direction: column;
         align-items: center;
         margin-left: 0;
-        margin-top: 4%;
+        margin-top: -40%;
     }
     #contactdiv{
         margin-top: 5%;
