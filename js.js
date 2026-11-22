@@ -36,11 +36,16 @@ buton.addEventListener("click", () => {
 function schimbaImaginea() {
     const poza = document.getElementById("echipa");
 
-    poza.src = poza.src.includes("Poze/beiuscs.jpg")
-        ? "Poze/BeiusAlbastru.jpeg"
-        : "Poze/beiuscs.jpg";
+    if (poza.classList.contains("img-first")) {
+        poza.src = "Poze/BeiusAlbastru.jpeg";
+        poza.classList.remove("img-first");
+        poza.classList.add("img-second");
+    } else {
+        poza.src = "Poze/beiuscs.jpg";
+        poza.classList.remove("img-second");
+        poza.classList.add("img-first");
+    }
 }
-
 
 
 function mareste(poza) {
