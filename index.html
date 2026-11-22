@@ -37,7 +37,29 @@
     -webkit-mask: url("hero/logo.png") center / 100% 100% no-repeat; mask: url("hero/logo.png") center / 100% 100% no-repeat;
   }
   .csb-wrap:hover .glare { opacity: .6; }
+  .csb-logo {
+    height: clamp(180px, 38vh, 420px);
+}
+@media only screen and (max-width: 768px) {
+    .csb-logo {
+        height: 190px;
+        width: auto;
+        max-height: 25vh;
+    }
 
+    .csb-wrap {
+        padding: 0;
+    }
+
+    .csb-stage {
+        justify-content: center;
+    }
+}
+@media only screen and (max-width: 480px) {
+    .csb-logo {
+        height: 200px;
+    }
+}
   @media (prefers-reduced-motion: reduce) { .csb-hero > poster { display: none; } .csb-hero { background: url("hero/poster.jpg") center / cover; } }
     .csb-hero { height: 100vh !important; min-height:900px;  max-height:none;}
     .csb-hero > video { height: 100% !important; width: 100% !important; }
@@ -138,7 +160,7 @@ function move(e) {
                 <div class="panoucls" onclick="window.location.href=''"><p>Clasament</p></div>
                 <div class="panoucls" onclick="window.location.href=''"><p>Hartă interactivă</p></div>
             </div>
-            <div id="divechipa"><img src="Poze/beiuscs.jpg" id="echipa" alt="EchipaPoza" title="Primul 11">
+            <div id="divechipa"><img src="Poze/beiuscs.jpg" id="echipa" alt="EchipaPoza" title="Primul 11" class="img-first">
                 <p><i id="iconpoza" class="fa-solid fa-camera"></i> CS Bihorul Beiuș - Minaur Baia Mare</p>
             </div>
             <div id="adoua">
