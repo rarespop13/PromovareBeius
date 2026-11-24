@@ -216,8 +216,7 @@ html, body { margin: 0; }
 (function(){
   try{
     if(!window.Lenis||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-    var l=new Lenis({lerp:0.12,wheelMultiplier:1,smoothWheel:true});
-    window.lenis = l;
+    var l=new Lenis({lerp:0.10,wheelMultiplier:1,smoothWheel:true});
     function raf(t){l.raf(t);requestAnimationFrame(raf)}
     requestAnimationFrame(raf);
     document.querySelectorAll('a[href^="#"]').forEach(function(a){
@@ -231,22 +230,8 @@ html, body { margin: 0; }
   }catch(err){}
 })();
 
-const logo = document.getElementById("logoBeius");
 
-logo.addEventListener("click", () => {
-    if (window.lenis) {
-        window.lenis.scrollTo(0, {
-            duration: 1.6,
-            easing: (x) => 1 - Math.pow(1 - x, 4)
-        });
-    } else {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-});
 </script>
-
-
-
 
 
 </body>
