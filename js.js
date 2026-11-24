@@ -87,4 +87,3 @@ function inchide() {
     document.getElementById("lightbox").style.display = "none";
     document.getElementById("cap").style.display = "";
 }
-
