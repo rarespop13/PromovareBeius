@@ -11,6 +11,7 @@
 </head>
 <body>
     <div id="corp">
+        <div id="cap-zone"></div>
         <div id="cap">
             <img src="Poze/logoBeius.png" id="logoBeius">
             <button id="theme-toggle" onclick="schimbaImaginea()"><i class="fa-regular fa-moon" id="tema"></i></button>
@@ -207,6 +208,47 @@ html, body { margin: 0; }
             <img id="pozaMare">
         </div>
     </div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+<script>
+(function(){
+  try{
+    if(!window.Lenis||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    var l=new Lenis({lerp:0.12,wheelMultiplier:1,smoothWheel:true});
+    window.lenis = l;
+    function raf(t){l.raf(t);requestAnimationFrame(raf)}
+    requestAnimationFrame(raf);
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener('click',function(e){
+        var t=document.querySelector(a.getAttribute('href'));
+        if(!t)return;
+        e.preventDefault();
+        l.scrollTo(t,{duration:1.5,easing:function(x){return 1-Math.pow(1-x,4)}});
+      });
+    });
+  }catch(err){}
+})();
+
+const logo = document.getElementById("logoBeius");
+
+logo.addEventListener("click", () => {
+    if (window.lenis) {
+        window.lenis.scrollTo(0, {
+            duration: 1.6,
+            easing: (x) => 1 - Math.pow(1 - x, 4)
+        });
+    } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+});
+</script>
+
+
+
+
+
 </body>
 <script src="js.js"></script>
 </html>
