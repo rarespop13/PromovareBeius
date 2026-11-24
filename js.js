@@ -35,28 +35,14 @@ window.addEventListener("scroll", () => {
 
 
 const buton = document.getElementById("theme-toggle");
-const temaSalvata = localStorage.getItem("tema");
-if (temaSalvata === "dark") {
-    document.documentElement.setAttribute("data-theme", "dark");
-} else {
-    document.documentElement.removeAttribute("data-theme");
-}
-buton.addEventListener("click", () => {
-    const temaCurenta = document.documentElement.getAttribute("data-theme");
-    if (temaCurenta === "dark") {
-        document.documentElement.removeAttribute("data-theme");
-        localStorage.setItem("tema", "light");
-    } else {
-        document.documentElement.setAttribute("data-theme", "dark");
-        localStorage.setItem("tema", "dark");
-    }
-});
 
-
-function schimbaImaginea() {
+function aplicaPoza() {
     const poza = document.getElementById("echipa");
+    if (!poza) return;
 
-    if (poza.classList.contains("img-first")) {
+    const dark = document.documentElement.getAttribute("data-theme") === "dark";
+
+    if (dark) {
         poza.src = "Poze/BeiusAlbastru.jpeg";
         poza.classList.remove("img-first");
         poza.classList.add("img-second");
@@ -65,6 +51,29 @@ function schimbaImaginea() {
         poza.classList.remove("img-second");
         poza.classList.add("img-first");
     }
+}
+
+if (localStorage.getItem("tema") === "dark") {
+    document.documentElement.setAttribute("data-theme", "dark");
+} else {
+    document.documentElement.removeAttribute("data-theme");
+}
+aplicaPoza();
+
+
+if (buton) {
+    buton.addEventListener("click", () => {
+        const dark = document.documentElement.getAttribute("data-theme") === "dark";
+
+        if (dark) {
+            document.documentElement.removeAttribute("data-theme");
+            localStorage.setItem("tema", "light");
+        } else {
+            document.documentElement.setAttribute("data-theme", "dark");
+            localStorage.setItem("tema", "dark");
+        }
+        aplicaPoza();
+    });
 }
 
 
@@ -78,3 +87,4 @@ function inchide() {
     document.getElementById("lightbox").style.display = "none";
     document.getElementById("cap").style.display = "";
 }
+
