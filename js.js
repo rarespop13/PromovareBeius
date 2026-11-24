@@ -1,17 +1,37 @@
 let lastScroll = 0;
+let hovering = false;
+let hideTimer = null;
 const cap = document.getElementById("cap");
-
+const zone = document.getElementById("cap-zone");
+function showCap() {
+    clearTimeout(hideTimer);
+    hovering = true;
+    cap.classList.remove("hidden");
+}
+function leaveCap() {
+    hovering = false;
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => {
+        if (!hovering && window.scrollY > 100) {
+            cap.classList.add("hidden");
+        }
+    }, 50);
+}
+zone.addEventListener("mouseenter", showCap);
+cap.addEventListener("mouseenter", showCap);
+zone.addEventListener("mouseleave", leaveCap);
+cap.addEventListener("mouseleave", leaveCap);
 window.addEventListener("scroll", () => {
     let currentScroll = window.scrollY;
-    
-    if (currentScroll > lastScroll && currentScroll > 100) {
-        cap.classList.add("hidden");
-    } else if (lastScroll - currentScroll > 5) {
-        cap.classList.remove("hidden");
+    if (!hovering) {
+        if (currentScroll > lastScroll && currentScroll > 100) {
+            cap.classList.add("hidden");
+        } else if (lastScroll - currentScroll > 5) {
+            cap.classList.remove("hidden");
+        }
     }
     lastScroll = currentScroll;
 });
-
 
 
 const buton = document.getElementById("theme-toggle");
@@ -58,4 +78,3 @@ function inchide() {
     document.getElementById("lightbox").style.display = "none";
     document.getElementById("cap").style.display = "";
 }
-
