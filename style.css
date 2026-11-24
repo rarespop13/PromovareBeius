@@ -453,9 +453,22 @@ html.lenis,html.lenis body{height:auto}
     #echipa{
         height: 35%;
     }
+    .img-second {
+        width: 320px;
+    }
 }
 @media (max-width: 330px){
     #echipa{
         height: 25%;
+    }
+}
+@media (max-width: 350px){
+    .img-second {
+        width: 250px;
+    }
+}
+@media (max-width: 255px){
+    .img-second {
+        width: 170px;
     }
 }
