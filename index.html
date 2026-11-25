@@ -1,250 +1,369 @@
 <!DOCTYPE html>
 <html lang="ro">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/5275b23c32.js" crossorigin="anonymous"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="Poze/logoBeius.png"> 
-    <title>CS Bihorul Beiuș</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://kit.fontawesome.com/5275b23c32.js" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="Poze/logoBeius.png" />
+  <title>CS Bihorul Beiuș</title>
 </head>
+
 <body>
-    <div id="corp">
-        <div id="cap-zone"></div>
-        <div id="cap">
-            <img src="Poze/logoBeius.png" id="logoBeius">
-            <button id="theme-toggle"><i class="fa-regular fa-moon" id="tema"></i></button>
-            <h1 id="cap2">CS Bihorul Beiuș</h1>
+  <div id="corp">
+    <div id="cap-zone"></div>
+    <div id="cap">
+  <img src="Poze/logoBeius.png" id="logoBeius" alt="CS Bihorul Beiuș – înapoi sus" />
+  <h1 id="cap2">CS Bihorul Beiuș</h1>
+  <nav id="meniu" aria-label="Meniu principal" onclick="this.classList.remove('open')">
+  <a class="panoucls" href="#">Clasament</a>
+  <a class="panoucls" href="#">Hartă</a>
+  <a class="panoucls" href="stadium.html">Stadion</a>
+  <a class="panoucls" href="gallery.html">Galerie</a>
+</nav>
+<button id="theme-toggle" aria-label="Schimbă tema">
+  <i class="fa-regular fa-moon" id="tema"></i>
+</button>
+<button id="burger" aria-label="Deschide meniul"
+        onclick="document.getElementById('meniu').classList.toggle('open')">
+  <i class="fa-solid fa-bars"></i>
+</button>
+</div>
+
+
+
+
+    <style>
+      html,
+      body {
+        margin: 0;
+      }
+
+      .csb-hero {
+        position: relative;
+        width: 100%;
+        height: calc(100vh - var(--cap-h, 0px));
+        height: calc(100svh - var(--cap-h, 0px));
+        min-height: 260px;
+        overflow: hidden;
+        background: #000;
+        flex: 0 0 auto;
+      }
+
+      .csb-hero>video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .csb-hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.28);
+        pointer-events: none;
+      }
+
+      .csb-stage {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+      }
+
+      .csb-wrap {
+        pointer-events: auto;
+        perspective: 900px;
+        padding: 2vh 4vw 0;
+      }
+
+      .csb-logo {
+        position: relative;
+        height: clamp(140px, 34svh, 420px);
+        aspect-ratio: 675 / 1100;
+        transform-style: preserve-3d;
+        will-change: transform;
+      }
+
+      .csb-logo img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        max-width: none;
+        user-select: none;
+        -webkit-user-drag: none;
+      }
+
+      .csb-logo .depth {
+        filter: brightness(0.18) saturate(0.6);
+      }
+
+      .csb-logo .face {
+        transform: translateZ(0);
+        filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.55));
+      }
+
+      .csb-logo .glare {
+        position: absolute;
+        inset: 0;
+        transform: translateZ(1px);
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.25s;
+        background: radial-gradient(circle at var(--gx, 50%) var(--gy, 30%),
+            rgba(255, 255, 255, 0.55),
+            rgba(255, 255, 255, 0) 55%);
+        -webkit-mask: url("hero/logo.png") center / 100% 100% no-repeat;
+        mask: url("hero/logo.png") center / 100% 100% no-repeat;
+      }
+
+      .csb-wrap:hover .glare {
+        opacity: 0.6;
+      }
+
+      .csb-tagline {
+        margin: 1.5vh 0 0;
+        padding: 0 20px;
+        text-align: center;
+        color: #fff;
+        font-weight: 700;
+        font-size: clamp(1.1rem, 3vw, 2.6rem);
+        letter-spacing: 0.02em;
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+        pointer-events: none;
+      }
+
+      @media (max-width: 768px) {
+        .csb-wrap {
+          padding: 0;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .csb-hero>video {
+          display: none;
+        }
+
+        .csb-hero {
+          background: url("hero/poster.jpg") center / cover;
+        }
+      }
+    </style>
+    <section class="csb-hero">
+      <video id="csbBg" muted loop playsinline poster="hero/poster.jpg" autoplay>
+        <source src="hero/video.mp4" type="video/mp4" />
+      </video>
+
+      <div class="csb-stage">
+        <div class="csb-wrap" id="csbWrap">
+          <div class="csb-logo" id="csbLogo">
+            <img class="face" src="hero/logo.png" alt="CS Bihorul Beiuș 1921" />
+            <div class="glare"></div>
+          </div>
         </div>
-
-
-<style>
-html, body { margin: 0; }
-
-.csb-hero {
-  position: relative;
-  width: 100%;
-  height: calc(100vh - var(--cap-h, 0px));   
-  height: calc(100svh - var(--cap-h, 0px)); 
-  min-height: 260px;
-  overflow: hidden;
-  background: #000;
-  flex: 0 0 auto;
-}
-.csb-hero > video {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-}
-.csb-hero::after { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,.28); pointer-events: none; }
-
-.csb-stage {
-  position: absolute; inset: 0; z-index: 2;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  pointer-events: none;
-}
-.csb-wrap { pointer-events: auto; perspective: 900px; padding: 2vh 4vw 0; }
-.csb-logo {
-  position: relative;
-  height: clamp(140px, 34svh, 420px);
-  aspect-ratio: 675 / 1100;
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-.csb-logo img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; max-width: none; user-select: none; -webkit-user-drag: none; }
-.csb-logo .depth { filter: brightness(.18) saturate(.6); }
-.csb-logo .face  { transform: translateZ(0); filter: drop-shadow(0 18px 28px rgba(0,0,0,.55)); }
-.csb-logo .glare {
-  position: absolute; inset: 0; transform: translateZ(1px); pointer-events: none; opacity: 0; transition: opacity .25s;
-  background: radial-gradient(circle at var(--gx, 50%) var(--gy, 30%), rgba(255,255,255,.55), rgba(255,255,255,0) 55%);
-  -webkit-mask: url("hero/logo.png") center / 100% 100% no-repeat;
-  mask: url("hero/logo.png") center / 100% 100% no-repeat;
-}
-.csb-wrap:hover .glare { opacity: .6; }
-
-.csb-tagline {
-  margin: 1.5vh 0 0; padding: 0 20px; text-align: center; color: #fff; font-weight: 700;
-  font-size: clamp(1.1rem, 3vw, 2.6rem); letter-spacing: .02em;
-  text-shadow: 0 2px 12px rgba(0,0,0,.7);
-  pointer-events: none;
-}
-
-@media (max-width: 768px) { .csb-wrap { padding: 0; } }
-
-@media (prefers-reduced-motion: reduce) {
-  .csb-hero > video { display: none; }
-  .csb-hero { background: url("hero/poster.jpg") center / cover; }
-}
-</style>
-<section class="csb-hero">
-  <video id="csbBg" muted loop playsinline poster="hero/poster.jpg" autoplay>
-    <source src="hero/video.mp4" type="video/mp4">
-  </video>
-
-  <div class="csb-stage">
-    <div class="csb-wrap" id="csbWrap">
-      <div class="csb-logo" id="csbLogo">
-        <img class="face" src="hero/logo.png" alt="CS Bihorul Beiuș 1921">
-        <div class="glare"></div>
+        <p class="csb-tagline">
+          <i><span class="texttt">Un oraș</span>, o echipă,
+            <span class="texttt">un vis</span>!</i>
+        </p>
       </div>
+      <a class="scrollhint" href="#istorie" aria-label="Mergi la istorie"><i class="fa-solid fa-chevron-down"></i></a>
+    </section>
+    <script>
+      (function () {
+        var bg = document.getElementById("csbBg");
+        var snd = document.getElementById("csbSound");
+        if (snd)
+          snd.addEventListener("click", function () {
+            bg.muted = !bg.muted;
+            snd.classList.toggle("unmuted", !bg.muted);
+          });
+
+        var p = bg.play();
+        if (p && p.catch)
+          p.catch(function () {
+            var start = function () {
+              bg.play();
+            };
+            document.addEventListener("click", start, { once: true });
+            document.addEventListener("touchstart", start, { once: true });
+          });
+
+        var wrap = document.getElementById("csbWrap"),
+          logo = document.getElementById("csbLogo");
+        var MAX = 10,
+          DEPTH = 9,
+          STEP = 2;
+
+        var face = logo.querySelector(".face");
+        for (var i = DEPTH; i >= 1; i--) {
+          var d = face.cloneNode();
+          d.className = "depth";
+          d.alt = "";
+          d.setAttribute("aria-hidden", "true");
+          d.style.transform = "translateZ(" + -i * STEP + "px)";
+          logo.insertBefore(d, face);
+        }
+
+        var tx = 0,
+          ty = 0,
+          cx = 0,
+          cy = 0,
+          raf = null;
+        var reduce = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+        function frame() {
+          cx += (tx - cx) * 0.12;
+          cy += (ty - cy) * 0.12;
+          logo.style.transform =
+            "rotateX(" + cy + "deg) rotateY(" + cx + "deg)";
+          logo.style.setProperty("--gx", 50 + cx * 2.5 + "%");
+          logo.style.setProperty("--gy", 30 - cy * 2.5 + "%");
+          raf =
+            Math.abs(tx - cx) > 0.01 || Math.abs(ty - cy) > 0.01
+              ? requestAnimationFrame(frame)
+              : null;
+        }
+        function kick() {
+          if (!raf) raf = requestAnimationFrame(frame);
+        }
+
+        function move(e) {
+          if (reduce) return;
+          var r = wrap.getBoundingClientRect();
+          tx = (((e.clientX - r.left) / r.width) * 2 - 1) * MAX;
+          ty = -(((e.clientY - r.top) / r.height) * 2 - 1) * MAX;
+          kick();
+        }
+        wrap.addEventListener("pointermove", move);
+        wrap.addEventListener("pointerdown", move);
+        wrap.addEventListener("pointerleave", function () {
+          tx = ty = 0;
+          kick();
+        });
+        var hero = document.querySelector(".csb-hero");
+        function fitHero() {
+          var top = hero.getBoundingClientRect().top + window.pageYOffset; // height of everything above the hero
+          document.documentElement.style.setProperty("--cap-h", top + "px");
+        }
+        fitHero();
+        window.addEventListener("load", fitHero);
+        window.addEventListener("resize", fitHero);
+        window.addEventListener("orientationchange", fitHero);
+        if (document.fonts && document.fonts.ready)
+          document.fonts.ready.then(fitHero);
+        var capEl = document.getElementById("cap");
+        if (capEl && window.ResizeObserver)
+          new ResizeObserver(fitHero).observe(capEl);
+      })();
+    </script>
+
+
+<main>
+  <section id="istorie" class="card reveal">
+    <h2>Un secol de fotbal</h2>
+    <p class="lead">Clubul Sportiv Bihorul Beiuș este unul dintre simbolurile fotbalului din Depresiunea Beiușului.</p>
+
+    <ul class="cifre">
+      <li><b>1921</b><span>anul înființării</span></li>
+      <li><b>locul 3</b><span>în Liga a III-a, 2011–2012</span></li>
+      <li><b>Liga a III-a</b><span>unde evoluăm acum</span></li>
+    </ul>
+
+    <ol class="timeline">
+      <li><b>1921</b><p>La 7 iulie, la inițiativa profesorului Ioan Bușiția, se înființează echipa Aurora Beiuș. De-a lungul anilor, formația a purtat mai multe nume: Aurora, Gloria și Bihorul Beiuș.</p></li>
+      <li><b>2004–2012</b><p>Opt sezoane consecutive în Liga a III-a.</p></li>
+      <li><b>2011–2012</b><p>Locul al treilea, una dintre cele mai mari performanțe din istoria clubului.</p></li>
+      <li><b>2015 și 2024</b><p>Câștigăm Cupa României, faza județeană Bihor.</p></li>
+      <li><b>2024–2025</b><p>Câștigăm Liga a IV-a Bihor și promovăm în Liga a III-a, după ce învingem Sticla Arieșul Turda în ambele manșe ale barajului.</p></li>
+      <li><b>Prezent</b><p>CS Bihorul Beiuș evoluează în Liga a III-a, al treilea eșalon al fotbalului românesc.</p></li>
+    </ol>
+  </section>
+
+  <figure class="reveal">
+    <img src="Poze/beiuscs.jpg" id="echipa" alt="Primul 11 al echipei" title="Primul 11" >
+    <figcaption id="textpoza"><i class="fa-solid fa-camera"></i> CS Bihorul Beiuș – Minaur Baia Mare</figcaption>
+  </figure>
+
+  <section id="contactdiv" class="card reveal">
+    <h2 id="ctc">Contactați-ne</h2>
+    <p class="sub">Scrieți-ne și vă răspundem cât mai repede.</p>
+    <form action="https://formsubmit.co/poprarescontact@gmail.com" method="POST" id="contact">
+      <input type="email" name="email" placeholder="Adresa dvs. de e-mail" required class="input" autocomplete="email" />
+      <input type="text" name="subject" placeholder="Subiectul discuției" required class="input" />
+      <textarea name="message" placeholder="Mesajul dvs." rows="4" required class="input"></textarea>
+      <input type="hidden" name="_captcha" value="true" />
+      <button type="submit" id="butonctc">Trimite mesajul</button>
+    </form>
+  </section>
+</main>
+    
+
+    
+    <div id="lightbox" onclick="inchide()">
+      <img id="pozaMare" />
     </div>
-    <p class="csb-tagline"><i><span class="texttt">Un oraș</span>, o echipă, <span class="texttt">un vis</span>!</i></p>
   </div>
 
-</section>
-<script>
-(function () {
-  var bg = document.getElementById('csbBg');
-  var snd = document.getElementById('csbSound');
-  if (snd) snd.addEventListener('click', function () { bg.muted = !bg.muted; snd.classList.toggle('unmuted', !bg.muted); });
-
-  var p = bg.play();
-  if (p && p.catch) p.catch(function () {
-    var start = function () { bg.play(); };
-    document.addEventListener('click', start, { once: true });
-    document.addEventListener('touchstart', start, { once: true });
-  });
-
-  var wrap = document.getElementById('csbWrap'), logo = document.getElementById('csbLogo');
-  var MAX = 10, DEPTH = 9, STEP = 2;
-
-  var face = logo.querySelector('.face');
-  for (var i = DEPTH; i >= 1; i--) {
-    var d = face.cloneNode();
-    d.className = 'depth'; d.alt = ''; d.setAttribute('aria-hidden', 'true');
-    d.style.transform = 'translateZ(' + (-i * STEP) + 'px)';
-    logo.insertBefore(d, face);
-  }
-
-  var tx = 0, ty = 0, cx = 0, cy = 0, raf = null;
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  function frame() {
-    cx += (tx - cx) * 0.12; cy += (ty - cy) * 0.12;
-    logo.style.transform = 'rotateX(' + cy + 'deg) rotateY(' + cx + 'deg)';
-    logo.style.setProperty('--gx', (50 + cx * 2.5) + '%');
-    logo.style.setProperty('--gy', (30 - cy * 2.5) + '%');
-    raf = (Math.abs(tx - cx) > .01 || Math.abs(ty - cy) > .01) ? requestAnimationFrame(frame) : null;
-  }
-  function kick() { if (!raf) raf = requestAnimationFrame(frame); }
-
-  function move(e) {
-    if (reduce) return;
-    var r = wrap.getBoundingClientRect();
-    tx =  (((e.clientX - r.left) / r.width)  * 2 - 1) * MAX;
-    ty = -(((e.clientY - r.top)  / r.height) * 2 - 1) * MAX;
-    kick();
-  }
-  wrap.addEventListener('pointermove', move);
-  wrap.addEventListener('pointerdown', move);
-  wrap.addEventListener('pointerleave', function () { tx = ty = 0; kick(); });
-
-  /* ---- make the hero fill the rest of the screen under the header ---- */
-  var hero = document.querySelector('.csb-hero');
-  function fitHero() {
-    var top = hero.getBoundingClientRect().top + window.pageYOffset;  // height of everything above the hero
-    document.documentElement.style.setProperty('--cap-h', top + 'px');
-  }
-  fitHero();
-  window.addEventListener('load', fitHero);
-  window.addEventListener('resize', fitHero);
-  window.addEventListener('orientationchange', fitHero);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitHero);
-  var capEl = document.getElementById('cap');
-  if (capEl && window.ResizeObserver) new ResizeObserver(fitHero).observe(capEl);
-})();
-</script>
-
-
-        <div id="paddle">
-            <p>Clubul Sportiv Bihorul Beiuș este unul dintre simbolurile fotbalului din Depresiunea Beiușului, având o tradiție de peste un secol.<br><br>
-            Povestea fotbalului la Beiuș a început pe 7 iulie 1921, când, la inițiativa profesorului Ioan Bușiția, a fost înființată echipa de fotbal Aurora Beiuș. De-a lungul anilor, formația a evoluat sub diverse denumiri, printre care Aurora, Gloria și Bihorul Beiuș.<br><br>
-            Unul dintre cele mai importante momente din istoria clubului a fost participarea în Liga a III-a, unde echipa a activat timp de opt sezoane consecutive, între anii 2004 și 2012. În sezonul 2011–2012, Bihorul Beiuș a obținut locul al treilea, una dintre cele mai mari performanțe din istoria sa.<br><br>
-            Clubul a continuat să reprezinte cu mândrie orașul Beiuș, câștigând Cupa României – faza județeană Bihor, în anii 2015 și 2024.<br><br>
-            Sezonul 2024–2025 a adus o altă realizare remarcabilă: câștigarea Ligii a IV-a Bihor și promovarea în Liga a III-a, după victoria în fața echipei Sticla Arieșul Turda în ambele manșe ale barajului de promovare. În prezent, CS Bihorul Beiuș evoluează în Liga a III-a, al treilea eșalon al fotbalului românesc.
-            </p>
-        </div>
-
-        <img src="Poze/beiuscs.jpg" id="echipa" alt="EchipaPoza" title="Primul 11" class="img-first" onclick="mareste(this)">
-        <p id="textpoza"><i id="iconpoza" class="fa-solid fa-camera"></i> CS Bihorul Beiuș - Minaur Baia Mare</p>
-        
-        <div class="panoucls" onclick="window.location.href=''"><p>Clasament</p></div>
-        <div class="panoucls" onclick="window.location.href=''"><p>Hartă interactivă</p></div>
-        <div class="panoucls" onclick="window.location.href='stadium.html'"><p>Stadion</p></div>
-        <div class="panoucls" onclick="window.location.href='gallery.html'"><p>Galerie</p></div>
-
-        <div id="contactdiv">
-            <section>
-                <h1 id="ctc">Contactaţi-ne</h1>
-            <form action="https://formsubmit.co/poprarescontact@gmail.com" method="POST" id="contact">
-                <input 
-                    type="email"
-                    name="email"
-                    placeholder="Adresa dvs. de e-mail" 
-                    required
-                    class="input"
-                >
-                <input 
-                    type="text" 
-                    name="subject" 
-                    placeholder="Subiectul discuției..." 
-                    required
-                    class="input"
-                >
-                <textarea 
-                    name="message" 
-                    placeholder="Mesajul tău aici..." 
-                    rows="4" 
-                    required
-                    class="input"
-                ></textarea>
-                <input type="hidden" name="_captcha" value="true">
-                <button type="submit" id="butonctc">Trimite mesajul</button>
-            </form>
-            </section>
-        </div>
-        <div id="lightbox" onclick="inchide()">
-            <img id="pozaMare">
-        </div>
-    </div>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
-<script>
-(function(){
-  try{
-    if(!window.Lenis||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-    var l=new Lenis({lerp:0.10,wheelMultiplier:1,smoothWheel:true});
-    function raf(t){l.raf(t);requestAnimationFrame(raf)}
-    requestAnimationFrame(raf);
-    document.querySelectorAll('a[href^="#"]').forEach(function(a){
-      a.addEventListener('click',function(e){
-        var t=document.querySelector(a.getAttribute('href'));
-        if(!t)return;
-        e.preventDefault();
-        l.scrollTo(t,{duration:1.5,easing:function(x){return 1-Math.pow(1-x,4)}});
-      });
-    });
-  }catch(err){}
-})();
-const logo = document.getElementById("logoBeius");
-
-logo.addEventListener("click", () => {
-    if (window.lenis) {
-        window.lenis.scrollTo(0, {
-            duration: 1.6,
-            easing: (x) => 1 - Math.pow(1 - x, 4)
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+  <script>
+    (function () {
+      try {
+        if (
+          !window.Lenis ||
+          matchMedia("(prefers-reduced-motion: reduce)").matches
+        )
+          return;
+        var l = new Lenis({
+          lerp: 0.1,
+          wheelMultiplier: 1,
+          smoothWheel: true,
         });
-    } else {
+        function raf(t) {
+          l.raf(t);
+          requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+        document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+          a.addEventListener("click", function (e) {
+            var t = document.querySelector(a.getAttribute("href"));
+            if (!t) return;
+            e.preventDefault();
+            l.scrollTo(t, {
+              duration: 1.5,
+              easing: function (x) {
+                return 1 - Math.pow(1 - x, 4);
+              },
+            });
+          });
+        });
+      } catch (err) { }
+    })();
+    const logo = document.getElementById("logoBeius");
+
+    logo.addEventListener("click", () => {
+      if (window.lenis) {
+        window.lenis.scrollTo(0, {
+          duration: 1.6,
+          easing: (x) => 1 - Math.pow(1 - x, 4),
+        });
+      } else {
         window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-});
-
-</script>
-
-
+      }
+    });
+  </script>
 </body>
 <script src="js.js"></script>
+
 </html>
