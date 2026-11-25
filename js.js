@@ -1,3 +1,5 @@
+
+/*  
 let lastScroll = 0;
 let hovering = false;
 let hideTimer = null;
@@ -32,7 +34,7 @@ window.addEventListener("scroll", () => {
     }
     lastScroll = currentScroll;
 });
-
+*/
 
 const buton = document.getElementById("theme-toggle");
 
@@ -87,3 +89,4 @@ function inchide() {
     document.getElementById("lightbox").style.display = "none";
     document.getElementById("cap").style.display = "";
 }
+
