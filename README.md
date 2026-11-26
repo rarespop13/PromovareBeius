@@ -2,7 +2,8 @@
 
 Site de prezentare pentru echipa de fotbal CS Bihorul Beiuș, din județul Bihor, orașul Beiuș, înființat în 1921, care evoluează în Liga a III-a.
 
-🌐 **Site live:** https://rarespop13.github.io/
+🌐 **Site live:** 
+https://rarespop13.github.io/PromovareBeius/
 
 ## Ce conține
 
