@@ -1,2 +1,1 @@
-# PromovareBeius
-Promovare CS Bihorul Beius
+CS Bihorul Beiuș -- Site de promovare
