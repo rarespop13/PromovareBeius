@@ -9,173 +9,291 @@
     <link rel="icon" type="image/png" href="Poze/logoBeius.png"> 
     <title>CS Bihorul Beiuș</title>
 </head>
+<style>
+    :root{
+  --red:#d90404; --head-bg:rgba(217,4,4,.92); --on-head:#fff;
+  --bg:#f6f4f2; --card:#fff; --ink:#1a1a1d; --muted:#5d5d66; --line:#e4dfdb; --head:64px; --ratio:1/1;
+  --shadow:0 14px 40px rgba(0,0,0,.24),0 2px 6px rgba(0,0,0,.12);
+}
+[data-theme="dark"]{
+  --red:hsl(198,78%,47%); --head-bg:hsla(198,78%,47%,.92); --on-head:#000;
+  --bg:#0f0f11; --card:#1a1a1e; --ink:#f2f2f2; --muted:#a8a8b0; --line:#2c2c32;
+  --shadow:0 14px 44px hsla(0, 0%, 19%, 0.28), 0 2px 8px rgba(0, 0, 0, .6);
+}
+*{box-sizing:border-box}
+html{scrollbar-width:none;-ms-overflow-style:none;scroll-behavior:smooth;scroll-padding-top:calc(var(--head) + 16px);overflow-x:hidden}
+html::-webkit-scrollbar,body::-webkit-scrollbar{display:none;width:0;height:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.05rem/1.75 "Inter",system-ui,sans-serif;transition:background .3s,color .3s;overflow-x:clip}
+h1,h2,h3{font-family:"Oswald",sans-serif;font-weight:700;line-height:1.15;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+
+main{max-width:1100px;margin:0 auto;padding:calc(var(--head) + env(safe-area-inset-top,0px) + 32px) 18px 0}
+.intro h2{font-size:clamp(2rem,7vw,3rem);color:var(--red)}
+.intro p{color:var(--muted);margin:6px 0 20px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px}
+.chips a{padding:8px 16px;border-radius:999px;border:2px solid var(--red);color:var(--ink);text-decoration:none;font:500 .95rem "Oswald",sans-serif;letter-spacing:.04em;transition:background .2s,color .2s}
+.chips a:hover{background:var(--red);color:var(--on-head)}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:28px;margin-bottom:40px}
+.card h2{font-size:clamp(1.7rem,5vw,2.4rem);color:var(--red)}
+.card h2 span{color:var(--ink);font-weight:500}
+.sub{margin:4px 0 20px;color:var(--muted);font-size:.95rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.grid img{display:block;width:100%;aspect-ratio:var(--ratio);object-fit:cover;border-radius:12px;cursor:pointer;background:var(--line);transition:transform .3s,box-shadow .3s}
+.grid img:hover{transform:scale(1.04);box-shadow:var(--shadow);position:relative;z-index:1}
+
+footer{background:#0f0f11;color:#cfcfd4;text-align:center;padding:36px 18px calc(36px + env(safe-area-inset-bottom,0px))}
+footer img{height:64px;width:auto}
+footer p{margin:10px 0 0;font-size:.95rem}
+footer nav{display:flex;justify-content:center;gap:20px;margin-top:14px;flex-wrap:wrap}
+footer a{text-decoration:none}
+footer a:hover{color:#fff;text-decoration:underline}
+
+#lightbox{display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.94);justify-content:center;align-items:center;touch-action:pan-y}
+#lightbox.open{display:flex}
+#pozaMare{max-width:94%;max-height:84%;border-radius:12px;user-select:none}
+#lightbox button{position:absolute;background:rgba(255,255,255,.14);border:0;color:#fff;width:48px;height:48px;border-radius:50%;font-size:1.3rem;cursor:pointer}
+#lightbox button:hover{background:rgba(255,255,255,.3)}
+#lbClose{top:calc(14px + env(safe-area-inset-top,0px));right:14px}
+#lbPrev{left:12px;top:50%;translate:0 -50%}
+#lbNext{right:12px;top:50%;translate:0 -50%}
+#lbCount{position:absolute;bottom:calc(18px + env(safe-area-inset-bottom,0px));color:#fff;font-size:.95rem}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:768px){
+  #burger{display:block}
+  #cap2{font-size:1.1rem}
+  #meniu{position:absolute;top:100%;left:0;right:0;flex-direction:column;background:#111;padding:10px 14px 16px;
+    transform:translateY(-12px);opacity:0;visibility:hidden;transition:transform .3s,opacity .3s,visibility .3s;box-shadow:0 12px 24px rgba(0,0,0,.4)}
+  #meniu.open{transform:none;opacity:1;visibility:visible}
+  .panoucls{color:#fff;padding:14px 16px;border-radius:12px;font-size:1.2rem}
+  .card{padding:20px 14px}
+  .grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  #lbPrev,#lbNext{width:42px;height:42px}
+}
+@media (max-width:300px){
+  #cap{padding-left:8px;padding-right:8px;gap:6px}
+  #logoBeius{height:40px}
+  #cap2{display:none}
+  #theme-toggle{margin-left:auto}
+}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
+</style>
 <body>
     <div id="corp">
         <div id="cap-zone"></div>
         <div id="cap">
-            <i class="fa-solid fa-arrow-left" id="inapoi" onclick="window.location.href='index.html'"></i>
-            <img src="Poze/logoBeius.png" id="logoBeius">
-            <button id="theme-toggle"><i class="fa-regular fa-moon" id="tema"></i></button>
-            <h1 id="cap2">Galerie</h1>
-        </div>
-        <h1 id="seniori">SENIORI <i class="fa-solid fa-calendar-days"></i> 2026-2027</h1>
-        <div id="galeriesnr">
-            <img src="Poze/1.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/2.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/3.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/4.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/5.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/6.png" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/7.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/8.png" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/9.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/10.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/11.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/12.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/13.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/14.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/15.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/16.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/17.jpeg" class="pozeSeniori" onclick="mareste(this)">
-        </div>
-        <hr id="lineGll">
-        <h1 id="seniori">JUNIORI <i class="fa-solid fa-calendar-days"></i> 2026-2027</h1>
-        <div id="galeriesnr">
-            <img src="Poze/1.1.jpg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/52.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/53.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/54.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/55.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/56.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/57.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/58.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/59.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/60.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/61.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/62.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/63.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/64.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/65.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/66.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/67.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/68.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/69.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/70.jpg" class="pozeSeniori" onclick="mareste(this)">
-        </div>
-        <hr id="lineGll">
-        <h1 id="seniori">SENIORI <i class="fa-solid fa-calendar-days"></i> 2025-2026</h1>
-        <div id="galeriesnr">
-            <img src="Poze/18.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/19.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/20.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/22.jpg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/23.jpg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/24.jpg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/25.jpg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/26.jpg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/27.jpg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/28.jpg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/29.jpg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/30.jpg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/31.jpg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/32.jpg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/33.jpg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/37.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/34.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/35.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/36.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/21.jpg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/38.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/39.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/40.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/41.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/42.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/43.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/44.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/45.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/46.jpeg" class="pozeSeniori" onclick="mareste(this)">
-<!--            <img src="Poze/47.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/48.jpg" class="pozeSeniori" onclick="mareste(this)"> 
-            <img src="Poze/49.jpg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/50.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/51.jpeg" class="pozeSeniori" onclick="mareste(this)">  -->
-        </div>
-        <hr id="lineGll">
-        <h1 id="seniori">JUNIORI <i class="fa-solid fa-calendar-days"></i> 2025-2026</h1>
-        <div id="galeriesnr">
-            <img src="Poze/71.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/72.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/73.jpg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/74.jpg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/75.jpg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/76.jpg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/77.jpg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/78.jpg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/79.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/80.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/81.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/82.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/83.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/84.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/85.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/86.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/87.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/88.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/89.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/90.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/91.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/92.jpeg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/93.jpg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/94.jpg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/95.jpg" class="pozeSeniori" onclick="mareste(this)">
-            <img src="Poze/96.jpg" class="pozeSeniori" onclick="mareste(this)">
-        </div>
-        <div id="lightbox" onclick="inchide()">
-            <img id="pozaMare">
-        </div>
-        <hr id="lineGll">
+            <img src="Poze/logoBeius.png" id="logoBeius" alt="CS Bihorul Beiuș – înapoi sus"
+        onclick="window.scrollTo({top:0,behavior:'smooth'})" />
+            <nav id="meniu" aria-label="Meniu principal" onclick="this.classList.remove('open')">
+                <a class="panoucls" href="gallery.html" id="curent">Galerie</a>
+                <a class="panoucls" href="#">Clasament</a>
+                <a class="panoucls" href="#">Hartă</a>
+                <a class="panoucls" href="stadium.html">Stadion</a>
+                <a class="panoucls" href="index.html">Acasă</a>
+            </nav>
+    <button id="theme-toggle" aria-label="Schimbă tema">
+    <i class="fa-regular fa-moon" id="tema"></i>
+    </button>
+    <button id="burger" aria-label="Deschide meniul"
+            onclick="document.getElementById('meniu').classList.toggle('open')">
+    <i class="fa-solid fa-bars"></i>
+    </button>
     </div>
+     <main>
+        <div class="intro">
+    <h2>Galerie foto</h2>
+    <p>Poze de la meciurile de seniori și juniori ale CS Bihorul Beiuș, pe sezoane.</p>
+    <nav class="chips" aria-label="Sezoane"><a href="#seniori-2026-2027">Seniori 2026–2027</a><a href="#juniori-2026-2027">Juniori 2026–2027</a><a href="#seniori-2025-2026">Seniori 2025–2026</a><a href="#juniori-2025-2026">Juniori 2025–2026</a></nav>
+  </div>
 
+  <section id="seniori-2026-2027" class="card reveal">
+    <h2>Seniori <span>2026–2027</span></h2>
+    <p class="sub">17 fotografii · atinge o imagine pentru a o mări</p>
+    <div class="grid">
+        <img src="Poze/1.jpeg" alt="Seniori 2026–2027, poza 1" loading="lazy" decoding="async" />
+        <img src="Poze/2.jpeg" alt="Seniori 2026–2027, poza 2" loading="lazy" decoding="async" />
+        <img src="Poze/3.jpeg" alt="Seniori 2026–2027, poza 3" loading="lazy" decoding="async" />
+        <img src="Poze/4.jpeg" alt="Seniori 2026–2027, poza 4" loading="lazy" decoding="async" />
+        <img src="Poze/5.jpeg" alt="Seniori 2026–2027, poza 5" loading="lazy" decoding="async" />
+        <img src="Poze/6.png" alt="Seniori 2026–2027, poza 6" loading="lazy" decoding="async" />
+        <img src="Poze/7.jpeg" alt="Seniori 2026–2027, poza 7" loading="lazy" decoding="async" />
+        <img src="Poze/8.png" alt="Seniori 2026–2027, poza 8" loading="lazy" decoding="async" />
+        <img src="Poze/9.jpeg" alt="Seniori 2026–2027, poza 9" loading="lazy" decoding="async" />
+        <img src="Poze/10.jpeg" alt="Seniori 2026–2027, poza 10" loading="lazy" decoding="async" />
+        <img src="Poze/11.jpeg" alt="Seniori 2026–2027, poza 11" loading="lazy" decoding="async" />
+        <img src="Poze/12.jpeg" alt="Seniori 2026–2027, poza 12" loading="lazy" decoding="async" />
+        <img src="Poze/13.jpeg" alt="Seniori 2026–2027, poza 13" loading="lazy" decoding="async" />
+        <img src="Poze/14.jpeg" alt="Seniori 2026–2027, poza 14" loading="lazy" decoding="async" />
+        <img src="Poze/15.jpeg" alt="Seniori 2026–2027, poza 15" loading="lazy" decoding="async" />
+        <img src="Poze/16.jpeg" alt="Seniori 2026–2027, poza 16" loading="lazy" decoding="async" />
+        <img src="Poze/17.jpeg" alt="Seniori 2026–2027, poza 17" loading="lazy" decoding="async" />
+    </div>
+  </section>
 
+  <section id="juniori-2026-2027" class="card reveal">
+    <h2>Juniori <span>2026–2027</span></h2>
+    <p class="sub">20 fotografii · atinge o imagine pentru a o mări</p>
+    <div class="grid">
+        <img src="Poze/1.1.jpg" alt="Juniori 2026–2027, poza 1" loading="lazy" decoding="async" />
+        <img src="Poze/52.jpeg" alt="Juniori 2026–2027, poza 2" loading="lazy" decoding="async" />
+        <img src="Poze/53.jpeg" alt="Juniori 2026–2027, poza 3" loading="lazy" decoding="async" />
+        <img src="Poze/54.jpeg" alt="Juniori 2026–2027, poza 4" loading="lazy" decoding="async" />
+        <img src="Poze/55.jpeg" alt="Juniori 2026–2027, poza 5" loading="lazy" decoding="async" />
+        <img src="Poze/56.jpeg" alt="Juniori 2026–2027, poza 6" loading="lazy" decoding="async" />
+        <img src="Poze/57.jpeg" alt="Juniori 2026–2027, poza 7" loading="lazy" decoding="async" />
+        <img src="Poze/58.jpeg" alt="Juniori 2026–2027, poza 8" loading="lazy" decoding="async" />
+        <img src="Poze/59.jpeg" alt="Juniori 2026–2027, poza 9" loading="lazy" decoding="async" />
+        <img src="Poze/60.jpeg" alt="Juniori 2026–2027, poza 10" loading="lazy" decoding="async" />
+        <img src="Poze/61.jpeg" alt="Juniori 2026–2027, poza 11" loading="lazy" decoding="async" />
+        <img src="Poze/62.jpeg" alt="Juniori 2026–2027, poza 12" loading="lazy" decoding="async" />
+        <img src="Poze/63.jpeg" alt="Juniori 2026–2027, poza 13" loading="lazy" decoding="async" />
+        <img src="Poze/64.jpeg" alt="Juniori 2026–2027, poza 14" loading="lazy" decoding="async" />
+        <img src="Poze/65.jpeg" alt="Juniori 2026–2027, poza 15" loading="lazy" decoding="async" />
+        <img src="Poze/66.jpeg" alt="Juniori 2026–2027, poza 16" loading="lazy" decoding="async" />
+        <img src="Poze/67.jpeg" alt="Juniori 2026–2027, poza 17" loading="lazy" decoding="async" />
+        <img src="Poze/68.jpeg" alt="Juniori 2026–2027, poza 18" loading="lazy" decoding="async" />
+        <img src="Poze/69.jpeg" alt="Juniori 2026–2027, poza 19" loading="lazy" decoding="async" />
+        <img src="Poze/70.jpg" alt="Juniori 2026–2027, poza 20" loading="lazy" decoding="async" />
+    </div>
+  </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+  <section id="seniori-2025-2026" class="card reveal">
+    <h2>Seniori <span>2025–2026</span></h2>
+    <p class="sub">29 fotografii · atinge o imagine pentru a o mări</p>
+    <div class="grid">
+        <img src="Poze/18.jpeg" alt="Seniori 2025–2026, poza 1" loading="lazy" decoding="async" />
+        <img src="Poze/19.jpeg" alt="Seniori 2025–2026, poza 2" loading="lazy" decoding="async" />
+        <img src="Poze/20.jpeg" alt="Seniori 2025–2026, poza 3" loading="lazy" decoding="async" />
+        <img src="Poze/22.jpg" alt="Seniori 2025–2026, poza 4" loading="lazy" decoding="async" />
+        <img src="Poze/23.jpg" alt="Seniori 2025–2026, poza 5" loading="lazy" decoding="async" />
+        <img src="Poze/24.jpg" alt="Seniori 2025–2026, poza 6" loading="lazy" decoding="async" />
+        <img src="Poze/25.jpg" alt="Seniori 2025–2026, poza 7" loading="lazy" decoding="async" />
+        <img src="Poze/26.jpg" alt="Seniori 2025–2026, poza 8" loading="lazy" decoding="async" />
+        <img src="Poze/27.jpg" alt="Seniori 2025–2026, poza 9" loading="lazy" decoding="async" />
+        <img src="Poze/28.jpg" alt="Seniori 2025–2026, poza 10" loading="lazy" decoding="async" />
+        <img src="Poze/29.jpg" alt="Seniori 2025–2026, poza 11" loading="lazy" decoding="async" />
+        <img src="Poze/30.jpg" alt="Seniori 2025–2026, poza 12" loading="lazy" decoding="async" />
+        <img src="Poze/31.jpg" alt="Seniori 2025–2026, poza 13" loading="lazy" decoding="async" />
+        <img src="Poze/32.jpg" alt="Seniori 2025–2026, poza 14" loading="lazy" decoding="async" />
+        <img src="Poze/33.jpg" alt="Seniori 2025–2026, poza 15" loading="lazy" decoding="async" />
+        <img src="Poze/37.jpeg" alt="Seniori 2025–2026, poza 16" loading="lazy" decoding="async" />
+        <img src="Poze/34.jpeg" alt="Seniori 2025–2026, poza 17" loading="lazy" decoding="async" />
+        <img src="Poze/35.jpeg" alt="Seniori 2025–2026, poza 18" loading="lazy" decoding="async" />
+        <img src="Poze/36.jpeg" alt="Seniori 2025–2026, poza 19" loading="lazy" decoding="async" />
+        <img src="Poze/21.jpg" alt="Seniori 2025–2026, poza 20" loading="lazy" decoding="async" />
+        <img src="Poze/38.jpeg" alt="Seniori 2025–2026, poza 21" loading="lazy" decoding="async" />
+        <img src="Poze/39.jpeg" alt="Seniori 2025–2026, poza 22" loading="lazy" decoding="async" />
+        <img src="Poze/40.jpeg" alt="Seniori 2025–2026, poza 23" loading="lazy" decoding="async" />
+        <img src="Poze/41.jpeg" alt="Seniori 2025–2026, poza 24" loading="lazy" decoding="async" />
+        <img src="Poze/42.jpeg" alt="Seniori 2025–2026, poza 25" loading="lazy" decoding="async" />
+        <img src="Poze/43.jpeg" alt="Seniori 2025–2026, poza 26" loading="lazy" decoding="async" />
+        <img src="Poze/44.jpeg" alt="Seniori 2025–2026, poza 27" loading="lazy" decoding="async" />
+        <img src="Poze/45.jpeg" alt="Seniori 2025–2026, poza 28" loading="lazy" decoding="async" />
+        <img src="Poze/46.jpeg" alt="Seniori 2025–2026, poza 29" loading="lazy" decoding="async" />
+    </div>
+  </section>
+
+  <section id="juniori-2025-2026" class="card reveal">
+    <h2>Juniori <span>2025–2026</span></h2>
+    <p class="sub">26 fotografii · atinge o imagine pentru a o mări</p>
+    <div class="grid">
+        <img src="Poze/71.jpeg" alt="Juniori 2025–2026, poza 1" loading="lazy" decoding="async" />
+        <img src="Poze/72.jpeg" alt="Juniori 2025–2026, poza 2" loading="lazy" decoding="async" />
+        <img src="Poze/73.jpg" alt="Juniori 2025–2026, poza 3" loading="lazy" decoding="async" />
+        <img src="Poze/74.jpg" alt="Juniori 2025–2026, poza 4" loading="lazy" decoding="async" />
+        <img src="Poze/75.jpg" alt="Juniori 2025–2026, poza 5" loading="lazy" decoding="async" />
+        <img src="Poze/76.jpg" alt="Juniori 2025–2026, poza 6" loading="lazy" decoding="async" />
+        <img src="Poze/77.jpg" alt="Juniori 2025–2026, poza 7" loading="lazy" decoding="async" />
+        <img src="Poze/78.jpg" alt="Juniori 2025–2026, poza 8" loading="lazy" decoding="async" />
+        <img src="Poze/79.jpeg" alt="Juniori 2025–2026, poza 9" loading="lazy" decoding="async" />
+        <img src="Poze/80.jpeg" alt="Juniori 2025–2026, poza 10" loading="lazy" decoding="async" />
+        <img src="Poze/81.jpeg" alt="Juniori 2025–2026, poza 11" loading="lazy" decoding="async" />
+        <img src="Poze/82.jpeg" alt="Juniori 2025–2026, poza 12" loading="lazy" decoding="async" />
+        <img src="Poze/83.jpeg" alt="Juniori 2025–2026, poza 13" loading="lazy" decoding="async" />
+        <img src="Poze/84.jpeg" alt="Juniori 2025–2026, poza 14" loading="lazy" decoding="async" />
+        <img src="Poze/85.jpeg" alt="Juniori 2025–2026, poza 15" loading="lazy" decoding="async" />
+        <img src="Poze/86.jpeg" alt="Juniori 2025–2026, poza 16" loading="lazy" decoding="async" />
+        <img src="Poze/87.jpeg" alt="Juniori 2025–2026, poza 17" loading="lazy" decoding="async" />
+        <img src="Poze/88.jpeg" alt="Juniori 2025–2026, poza 18" loading="lazy" decoding="async" />
+        <img src="Poze/89.jpeg" alt="Juniori 2025–2026, poza 19" loading="lazy" decoding="async" />
+        <img src="Poze/90.jpeg" alt="Juniori 2025–2026, poza 20" loading="lazy" decoding="async" />
+        <img src="Poze/91.jpeg" alt="Juniori 2025–2026, poza 21" loading="lazy" decoding="async" />
+        <img src="Poze/92.jpeg" alt="Juniori 2025–2026, poza 22" loading="lazy" decoding="async" />
+        <img src="Poze/93.jpg" alt="Juniori 2025–2026, poza 23" loading="lazy" decoding="async" />
+        <img src="Poze/94.jpg" alt="Juniori 2025–2026, poza 24" loading="lazy" decoding="async" />
+        <img src="Poze/95.jpg" alt="Juniori 2025–2026, poza 25" loading="lazy" decoding="async" />
+        <img src="Poze/96.jpg" alt="Juniori 2025–2026, poza 26" loading="lazy" decoding="async" />
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <img src="Poze/logoBeius.png" alt="" />
+  <p>CS Bihorul Beiuș · din 1921</p>
+  <nav aria-label="Link-uri rapide">
+    <a href="index.html">Acasă</a>
+    <a href="stadium.html">Stadion</a>
+    <a href="index.html#contactdiv">Contact</a>
+  </nav>
+</footer>
+
+<div id="lightbox" role="dialog" aria-label="Poză mărită">
+  <img id="pozaMare" alt="" />
+  <button id="lbClose" aria-label="Închide"><i class="fa-solid fa-xmark"></i></button>
+  <button id="lbPrev" aria-label="Poza anterioară"><i class="fa-solid fa-chevron-left"></i></button>
+  <button id="lbNext" aria-label="Poza următoare"><i class="fa-solid fa-chevron-right"></i></button>
+  <div id="lbCount"></div>
+</div>
 <script>
-(function(){
-  try{
-    if(!window.Lenis||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-    var l=new Lenis({lerp:0.12,wheelMultiplier:1,smoothWheel:true});
-    function raf(t){l.raf(t);requestAnimationFrame(raf)}
-    requestAnimationFrame(raf);
-    document.querySelectorAll('a[href^="#"]').forEach(function(a){
-      a.addEventListener('click',function(e){
-        var t=document.querySelector(a.getAttribute('href'));
-        if(!t)return;
-        e.preventDefault();
-        l.scrollTo(t,{duration:1.5,easing:function(x){return 1-Math.pow(1-x,4)}});
-      });
+(function () {
+  var lb = document.getElementById("lightbox"), big = document.getElementById("pozaMare"), cnt = document.getElementById("lbCount");
+  var group = [], idx = 0;
+  function show(i) {
+    idx = (i + group.length) % group.length;
+    big.src = group[idx].src; big.alt = group[idx].alt;
+    cnt.textContent = (idx + 1) + " / " + group.length;
+  }
+  function close() { lb.classList.remove("open"); }
+  document.querySelectorAll(".grid").forEach(function (g) {
+    var imgs = Array.prototype.slice.call(g.querySelectorAll("img"));
+    imgs.forEach(function (img, i) {
+      img.addEventListener("click", function () { group = imgs; show(i); lb.classList.add("open"); });
     });
-  }catch(err){}
+  });
+  document.getElementById("lbPrev").onclick = function (e) { e.stopPropagation(); show(idx - 1); };
+  document.getElementById("lbNext").onclick = function (e) { e.stopPropagation(); show(idx + 1); };
+  document.getElementById("lbClose").onclick = close;
+  lb.addEventListener("click", function (e) { if (e.target === lb) close(); });
+  document.addEventListener("keydown", function (e) {
+    if (!lb.classList.contains("open")) return;
+    if (e.key === "Escape") close();
+    if (e.key === "ArrowLeft") show(idx - 1);
+    if (e.key === "ArrowRight") show(idx + 1);
+  });
+  var x0 = null;
+  lb.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener("touchend", function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 50) show(idx + (dx < 0 ? 1 : -1));
+    x0 = null;
+  });
+  var els = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (en) {
+      en.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add("in"); io.unobserve(x.target); } });
+    }, { threshold: 0.05 });
+    els.forEach(function (el) { io.observe(el); });
+  } else els.forEach(function (el) { el.classList.add("in"); });
 })();
-
-const logo = document.getElementById("logoBeius");
-
-logo.addEventListener("click", () => {
-    if (window.lenis) {
-        window.lenis.scrollTo(0, {
-            duration: 1.6,
-            easing: (x) => 1 - Math.pow(1 - x, 4)
-        });
-    } else {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-});
-
-if (zone && cap) {
-    zone.addEventListener("mouseenter", showCap);
-    cap.addEventListener("mouseenter", showCap);
-    zone.addEventListener("mouseleave", leaveCap);
-    cap.addEventListener("mouseleave", leaveCap);
-}
 </script>
 </body>
 <script src="js.js"></script>
